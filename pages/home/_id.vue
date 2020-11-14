@@ -20,7 +20,7 @@ export default {
         return {
             title: this.home.title,
             script: [{
-                src:"https://maps.googleapis.com/maps/api/js?key=AIzaSyCsKXrZB1kSA-Xw4FqmqhDNNHhP__Homtw&libraries=places&callback=initMap",
+                src:"https://maps.googleapis.com/maps/api/js?key=xxxxxxxxxxxxxxxxxxxxxxxxx&libraries=places&callback=initMap",
                 hid: "map",
                 async: true, 
                 skip: process.client && window.mapLoaded
