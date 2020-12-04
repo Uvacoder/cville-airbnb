@@ -29,8 +29,7 @@ export default function(context, inject){
         if(mapLoaded) renderMap(canvas, lat, lng)
         else mapWaiting = { canvas, lat, lng }
     }
-    function renderMap(canvas, lat, lng){
-        console.log('mounted')
+    function renderMap(canvas, lat, lng){        
         const mapOptions = {
             zoom: 18,
             center: new window.google.maps.LatLng(lat, lng),
