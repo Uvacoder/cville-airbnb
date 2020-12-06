@@ -41,7 +41,7 @@ export default {
         if(!reviewResponse.ok) return error({ statusCode: reviewResponse.status, message: reviewResponse.statusText})
 
         const userResponse = await $dataApi.getUserByHomeId(params.id)        
-        if(!userResponse.ok) return error({ statusCode: userResponse.status, message: iserResponse.statusText})
+        if(!userResponse.ok) return error({ statusCode: userResponse.status, message: userResponse.statusText})
 
         return {
             home: homeResponse.json,
