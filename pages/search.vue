@@ -1,7 +1,8 @@
 <template>
 <div>{{ lat}} / {{ lng }} / {{ label }}<br/>
-<div v-for="home in homes" :key="home.objectID">{{ home.title}}<br/></div>
-</div></template>
+  <div v-for="home in homes" :key="home.objectID">{{ home.title}}<br/></div>
+</div>
+</template>
 <script>
 export default {
   watchQuery:['lat'],  
