@@ -1,5 +1,6 @@
 <template>
-<div>{{ lat}} / {{ lng }} / {{ label }}<br/>
+<div>Results for {{ label }}<br/>
+<div style="height:800px;width:800px;float:right;" ref="map"></div>
   <div v-if="homes.length > 0">  
     <HomeRow v-for="home in homes" :key="home.objectID" :home="home"/>
   </div>
@@ -13,12 +14,21 @@ export default {
       title: `Homes around ${this.label}`
     }
   },
+  mounted(){
+    this.updateMap()
+  },
+  methods:{
+    updateMap(){
+      this.$maps.showMap(this.$refs.map, this.lat, this.lng)
+    }
+  },
   async beforeRouteUpdate(to, from, next){
       const data = await this.$dataApi.getHomesByLocation(to.query.lat, to.query.lng)
       this.homes = data.json.hits
       this.label = to.query.label
       this.lat = to.query.lat
       this.lng = to.query.lng
+      this.updateMap()
       next()  
   },
 
