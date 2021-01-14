@@ -1,10 +1,14 @@
-{"name":"mastering-nuxt",
+{
+  "name": "mastering-nuxt",
   "dependencies": {
     "nuxt": "2.14.7"
   },
-  "scripts":{
+  "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "3.4.2"
   }
 }
