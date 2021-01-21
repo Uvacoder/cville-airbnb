@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div>    
     <header style="background-color:#eee;">
       <nuxt-link to="/">Home</nuxt-link>
       <input type="text" ref="citySearch" @changed="changed" />
