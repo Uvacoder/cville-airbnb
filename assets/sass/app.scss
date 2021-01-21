@@ -267,15 +267,13 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
 
   &-masonry {
     @apply grid grid-cols-4 grid-rows-2 gap-6 mb-18;
-
+    grid-template-rows: 280px 280px;
     > div {
+      background-size: cover;
       &:nth-child(1) {
         grid-column: 1 / 3;
         grid-row: 1 / 3;
-
-        img {
-          @apply rounded-l-3xl;
-        }
+        @apply rounded-l-3xl;
       }
 
       &:nth-child(2) {
@@ -284,10 +282,7 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
 
       &:nth-child(3) {
         grid-column: 4 / 5;
-
-        img {
-          @apply rounded-tr-3xl;
-        }
+        @apply rounded-tr-3xl;
       }
 
       &:nth-child(4) {
@@ -298,10 +293,7 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
       &:nth-child(5) {
         grid-column: 4 / 5;
         grid-row: 2 / 3;
-
-        img {
-          @apply rounded-br-3xl;
-        }
+        @apply rounded-br-3xl;
       }
     }
   }
@@ -342,6 +334,12 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
 
   &-house {
     @apply rounded-lg bg-white shadow-xl;
+
+    &-header {
+      img {
+        @apply rounded-t-lg;
+      }
+    }
 
     h2 {
       @apply font-medium text-lg py-2;
@@ -410,11 +408,15 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
     @apply bg-no-repeat flex items-center justify-center min-h-screen;
   }
 
+  &-search-results-page {
+    @apply flex flex-col h-screen;
+  }
+
   &-search-results {
-    @apply flex;
+    @apply flex overflow-hidden;
 
     &-listing {
-      @apply bg-catskill-white w-8/12 p-10 max-w-200;
+      @apply bg-catskill-white w-8/12 p-10 max-w-200 overflow-auto;
 
       .app-title {
         @apply pb-10;
@@ -422,6 +424,12 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
 
       .app-house {
         @apply flex mb-5 shadow-none relative;
+
+        .app-house-header {
+          img {
+            @apply rounded-t-none rounded-l-lg;
+          }
+        }
 
         .app-house-body {
           @apply flex-1;
