@@ -409,10 +409,12 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
   }
 
   &-search-results-page {
-    @apply flex flex-col h-screen;
+    @apply flex flex-col;
+    height: 85vh;
   }
 
   &-search-results {
+    min-height: 85vh;
     @apply flex overflow-hidden;
 
     &-listing {
@@ -426,9 +428,9 @@ $cities: paris, new-york, london, dubai, san-francisco, cancun;
         @apply flex mb-5 shadow-none relative;
 
         .app-house-header {
-          img {
-            @apply rounded-t-none rounded-l-lg;
-          }
+          @apply rounded-t-none rounded-l-lg;
+          width: 360px;
+          background-size: cover;
         }
 
         .app-house-body {
