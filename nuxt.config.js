@@ -24,6 +24,10 @@ export default {
         loaders: {
             limit: 0,
         }
-    }
+    },
+    publicRuntimeConfig:{
+    },
+    privateRuntimeConfig:{
+    },
 
 }
