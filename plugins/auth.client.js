@@ -1,6 +1,6 @@
 import Cookie from 'js-cookie'
 
-export default ({ $config }, inject) => {
+export default ({ $config, store }, inject) => {
     window.initAuth = init
     addScript()
     inject('auth', {
@@ -35,8 +35,13 @@ export default ({ $config }, inject) => {
 
         if(!user.isSignedIn()){
             Cookie.remove($config.auth.cookieName)
+            store.commit('auth/user', null)
             return
         }
+        store.commit('auth/user', {
+            fullName:profile.getName(),
+            profileUrl: profile.getImageUrl(),
+        })
 
         const idToken = user.getAuthResponse().id_token
         Cookie.set($config.auth.cookieName, idToken, { expires: 1/24, sameSite: 'Lax'})
