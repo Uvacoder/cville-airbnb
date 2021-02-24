@@ -16,7 +16,7 @@ export default {
         prefetchLinks: false,
     },
     plugins:[ '~/plugins/maps.client', '~/plugins/dataApi', '~/plugins/auth.client' ],
-    modules:['~/modules/auth'],
+    modules:['~/modules/auth', '~/modules/algolia'],
     buildModules:['@nuxtjs/tailwindcss'],
     css: ['~/assets/sass/app.scss'],
     build: {
@@ -30,8 +30,16 @@ export default {
             cookieName: 'idToken',
             clientId: '537712074419-0pao3sshf84cqqtaie3aumvmobmlseji.apps.googleusercontent.com',
         },
+        algolia:{
+            appId: 'QXGX8RCAML',
+            key:'f0ecada6cb5d32e6496eb1e42c3d7bbd',
+        }
     },
     privateRuntimeConfig:{
+        algolia:{
+            appId: 'QXGX8RCAML',
+            key: '739175c49753db77b422766b417678b1',
+        }
     },
 
 }
