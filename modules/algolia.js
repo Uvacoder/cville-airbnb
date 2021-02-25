@@ -11,10 +11,17 @@ export default function(){
         app.use('/api/user', getUserRoute)
     })
 
-    function getUserRoute(req, res, next){
-        console.log(req.identity)
+    async function getUserRoute(req, res, next){
+        const identity = req.identity
+        const userData = await getUserById(identity)
+
+        if(userData.status == 200){
+            sendJSON(userData.json, res)
+            return
+        }
+
         createUser(req.identity)
-        next()
+        sendJSON(makeUserPayload(identity), res)        
     }
 
     async function createUser(identity){
@@ -27,6 +34,21 @@ export default function(){
         } catch(error){
             return getErrorResponse(error)
         }
+    }
+
+    async function getUserById(userId){
+        try {
+            return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/users/${identity.id}`, {
+                headers,               
+            }))
+        } catch(error){
+            return getErrorResponse(error)
+        }
+    }
+
+    function sendJSON(data, res){
+        res.setHeader('Content-Type', 'application/json')
+        res.end(JSON.stringify(data))
     }
 
     function makeUserPayload(identity){
