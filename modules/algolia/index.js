@@ -1,13 +1,12 @@
-
-import { getHeaders } from './helpers'
 import userRouter from './routers/user'
+import getApis from './apis'
 
 export default function(){
     const algoliaConfig = this.options.privateRuntimeConfig.algolia
-    const headers = getHeaders(algoliaConfig)
+    const apis = getApis(algoliaConfig)
 
     this.nuxt.hook('render:setupMiddleware', (app) => {
-        app.use('/api/user', userRouter(headers))
+        app.use('/api/user', userRouter(apis))
     })
 
 }
