@@ -27,6 +27,8 @@
     <input type='number' v-model="home.bedrooms" class="w-14"/>
     <input type='number' v-model="home.beds" class="w-14"/>
     <input type='number' v-model="home.bathrooms" class="w-14"/><br/>
+
+    <input type='text' ref='locationSelector' autocomplete='off' placeholder='Select a location' @changed='changed'/><br/>
     Address: <input type='text' v-model="home.location.address" class="w-60"/><br/>
     City: <input type='text' v-model="home.location.city" class="w-26"/><br/>
     State: <input type='text' v-model="home.location.state" class="w-26"/><br/>
@@ -58,8 +60,8 @@ export default {
                     country: '',
                 },
                 _geoloc: {
-                    lat: 26.1,
-                    lng: 26.1,
+                    lat: '',
+                    lng: '',
                 },
                 images: [
                     'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
@@ -71,7 +73,28 @@ export default {
             }
         }
     },
+    mounted(){
+        this.$maps.makeAutoComplete(this.$refs.locationSelector, ['address'])
+    },
     methods:{
+        changed(event){
+            const addressParts = event.detail.address_components
+            const street = this.getAddressPart(addressParts, 'street_number')?.short_name || ''
+            const route = this.getAddressPart(addressParts, 'route')?.short_name || ''
+
+            this.home.location.address = street + ' ' + route
+            this.home.location.city = this.getAddressPart(addressParts, 'locality')?.short_name || ''
+            this.home.location.state = this.getAddressPart(addressParts, 'administrative_area_level_1')?.long_name || ''
+            this.home.location.country = this.getAddressPart(addressParts, 'country')?.short_name || ''
+            this.home.location.postalCode = this.getAddressPart(addressParts, 'postal_code')?.short_name || ''
+
+            const geo = event.detail.geometry.location
+            this.home._geoloc.lat = geo.lat()
+            this.home._geoloc.lng = geo.lng()
+        },
+        getAddressPart(parts, type){
+            return parts.find(part => part.types.includes(type))
+        },
         async onSubmit(){
             await fetch('/api/homes', {
                 method: 'POST',
