@@ -2,13 +2,13 @@
 <div>[LIST OF HOMES HERE]
 <h2 class="text-xl bold">Add a Home</h2>
 <form class="form" @submit.prevent="onSubmit">
-    <ImageUploader/>
+    
     Images:<br/>
-    <input type='text' v-model="home.images[0]" class="w-3/4"/><br/>
-    <input type='text' v-model="home.images[1]" class="w-3/4"/><br/>
-    <input type='text' v-model="home.images[2]" class="w-3/4"/><br/>
-    <input type='text' v-model="home.images[3]" class="w-3/4"/><br/>
-    <input type='text' v-model="home.images[4]" class="w-3/4"/><br/>
+  <ImageUploader @file-uploaded="imageUpdated($event, 0)"/>
+  <ImageUploader @file-uploaded="imageUpdated($event, 1)"/>
+  <ImageUploader @file-uploaded="imageUpdated($event, 2)"/>
+  <ImageUploader @file-uploaded="imageUpdated($event, 3)"/>
+  <ImageUploader @file-uploaded="imageUpdated($event, 4)"/>
     Title: <br/>
     <input type='text' v-model="home.title" class="w-60"/><br/>
     Description<br/>
@@ -64,13 +64,7 @@ export default {
                     lat: '',
                     lng: '',
                 },
-                images: [
-                    'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80',
-                    'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=81',
-                    'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=82',
-                    'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=83',
-                    'https://images.unsplash.com/photo-1542718610-a1d656d1884c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=84'
-                ]
+                images: []
             }
         }
     },
@@ -78,6 +72,9 @@ export default {
         this.$maps.makeAutoComplete(this.$refs.locationSelector, ['address'])
     },
     methods:{
+        imageUpdated(imageUrl,index){
+            this.home.images[index] = imageUrl
+        },
         changed(event){
             const addressParts = event.detail.address_components
             const street = this.getAddressPart(addressParts, 'street_number')?.short_name || ''

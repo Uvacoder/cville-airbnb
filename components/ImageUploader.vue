@@ -38,6 +38,8 @@ export default {
                 signature,
             })
 
+            this.$emit('file-uploaded', asset.secure_url)
+
         }
     }
 }
