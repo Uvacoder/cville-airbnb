@@ -19,9 +19,16 @@ export default {
         '~/plugins/maps.client', 
         '~/plugins/dataApi', 
         '~/plugins/auth.client', 
-        '~/plugins/vCalendar.client'
+        '~/plugins/vCalendar.client',
+        '~/plugins/stripe.client',
     ],
-    modules:['~/modules/auth', '~/modules/algolia', '~/modules/cloudinary', '@nuxtjs/cloudinary'],
+    modules:[
+        '~/modules/auth', 
+        '~/modules/algolia', 
+        '~/modules/cloudinary', 
+        '@nuxtjs/cloudinary',
+        '~/modules/stripe',
+    ],
     buildModules:['@nuxtjs/tailwindcss', '@nuxt/image'],
     cloudinary:{
         cloudName: 'dzxztzdg4',
