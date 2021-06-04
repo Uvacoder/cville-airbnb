@@ -1,11 +1,7 @@
 import { createHash } from 'crypto'
 
-export default function(){
-    const config = this.options.privateRuntimeConfig.cloudinary
-
-    this.nuxt.hook('render:setupMiddleware', (app) => {
-        app.use('/api/cloudinary/signature', setSignature)
-    })
+export default function(app, config){
+    app.use('/cloudinary/signature', setSignature)
 
     function setSignature(req, res){
         try{
@@ -16,7 +12,7 @@ export default function(){
                 payload.push(`${key}=${req.body[key]}`)
             })
 
-            sha1.update(payload.sort().join('&') + config.apiSecret)
+            sha1.update(payload.sort().join('&') + config.cloudinary.apiSecret)
             res.end(JSON.stringify({
                 signature: sha1.digest('hex')
             }))
