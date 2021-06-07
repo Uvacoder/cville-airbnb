@@ -15,24 +15,17 @@ export default {
     router: {
         prefetchLinks: false,
     },
-    plugins:[ 
-        '~/plugins/maps.client', 
-        '~/plugins/dataApi', 
-        '~/plugins/auth.client', 
+    plugins:[
+        '~/plugins/maps.client',
+        '~/plugins/dataApi',
+        '~/plugins/auth.client',
         '~/plugins/vCalendar.client',
         '~/plugins/stripe.client',
     ],
-    modules:[
-        '~/modules/auth', 
-        '~/modules/algolia', 
-        '~/modules/cloudinary', 
-        '@nuxtjs/cloudinary',
-        '~/modules/stripe',
-    ],
-    buildModules:['@nuxtjs/tailwindcss', '@nuxt/image'],
-    cloudinary:{
-        cloudName: 'dzxztzdg4',
+    serverMiddleware: {
+        '/api': '~/server/api',
     },
+    buildModules:['@nuxtjs/tailwindcss', '@nuxt/image', '@nuxt/nitro/compat'],
     image: {
         cloudinary: {
           baseURL: 'https://res.cloudinary.com/dzxztzdg4/image/upload/'
@@ -66,7 +59,8 @@ export default {
             appId: 'QXGX8RCAML',
             key: '739175c49753db77b422766b417678b1',
         },
-        cloudinary:{
+        cloudinary: {
+            cloudName: 'dzxztzdg4',
             apiSecret: 'Hner5MurgYTJLMQQ9F36P8msRN0',
         },
         stripe:{

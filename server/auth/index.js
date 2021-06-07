@@ -1,22 +1,16 @@
 import cookie from 'cookie'
 import {OAuth2Client} from 'google-auth-library'
 
-export default function() {
-    const authConfig = this.options.publicRuntimeConfig.auth
+export default function(app, config) {
+    app.use('/', handler)
 
-    this.nuxt.hook('render:setupMiddleware', (app) =>{
-        app.use('/api', handler)
-    })
-
-    this.nuxt.hook('render:setupMiddleware', (app) =>{
-        app.use('/admin', (req, res, next) => {
-            res.spa = true
-            next()
-        })
+    app.use('/admin', (_req, res, next) => {
+        res.spa = true
+        next()
     })
 
     async function handler(req, res, next){
-        const idToken = cookie.parse(req.headers.cookie)[authConfig.cookieName]
+        const idToken = cookie.parse(req.headers.cookie)[config.auth.cookieName]
         if(!idToken) return rejectHit(res)
 
         console.log(req.originalUrl)
@@ -34,17 +28,17 @@ export default function() {
     }
 
     async function getUser(idToken){
-        const client = new OAuth2Client(authConfig.clientId)
+        const client = new OAuth2Client(config.auth.clientId)
         try {
             const ticket = await client.verifyIdToken({
                 idToken,
-                audience: authConfig.clientId,
+                audience: config.auth.clientId,
             })
             return ticket.getPayload()
         }
         catch(error){
             console.error(error)
-        }        
+        }
     }
     function rejectHit(res){
         res.statusCode = 401

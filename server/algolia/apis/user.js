@@ -1,6 +1,6 @@
 import { getHeaders } from '../../helpers'
 import fetch from 'node-fetch'
-import { unWrap, getErrorResponse } from '../../../utils/fetchUtils'
+import { unWrap, getErrorResponse } from '~/utils/fetchUtils'
 
 export default (algoliaConfig) => {
     const headers = getHeaders(algoliaConfig)
@@ -30,12 +30,12 @@ export default (algoliaConfig) => {
         getById: async (identity) => {
             try {
                 return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/users/${identity.id}`, {
-                    headers,               
+                    headers,
                 }))
             } catch(error){
                 return getErrorResponse(error)
             }
         }
-    
+
     }
 }

@@ -25,3 +25,5 @@ sw.*
 
 # macOS
 .DS_Store
+
+.output

@@ -2,16 +2,12 @@ import stripeLib from 'stripe'
 import getApis from '../algolia/apis'
 import { rejectHitBadRequest, sendJSON } from '../helpers'
 
-export default function(){
-    const algoliaConfig = this.options.privateRuntimeConfig.algolia
-    const apis = getApis(algoliaConfig)
-    const secretKey = this.options.privateRuntimeConfig.stripe.secretKey
-    const stripe = stripeLib(secretKey)
-    const cloudName = this.options.cloudinary.cloudName
+export default function (app, config) {
+    const apis = getApis(config.stripe)
+    const stripe = stripeLib(config.stripe.secretKey)
+    const cloudName = config.cloudinary.cloudName
 
-    this.nuxt.hook('render:setupMiddleware', (app) => { 
-        app.use('/api/stripe/create-session', createSession)
-    })
+    app.use('/stripe/create-session', createSession)
 
     async function createSession(req, res){
         const body = req.body

@@ -1,6 +1,6 @@
 import { getHeaders } from '../../helpers'
 import fetch from 'node-fetch'
-import { unWrap, getErrorResponse } from '../../../utils/fetchUtils'
+import { unWrap, getErrorResponse } from '~/utils/fetchUtils'
 
 export default (algoliaConfig) => {
     const headers = getHeaders(algoliaConfig)
@@ -8,7 +8,7 @@ export default (algoliaConfig) => {
         get: async (homeId) => {
             try {
                 return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/homes/${homeId}`, {
-                    headers,                    
+                    headers,
                 }))
             } catch(error){
                 return getErrorResponse(error)
@@ -18,7 +18,7 @@ export default (algoliaConfig) => {
             try {
                 return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/homes/${homeId}`, {
                     headers,
-                    method: 'DELETE',                    
+                    method: 'DELETE',
                 }))
             } catch(error){
                 return getErrorResponse(error)
@@ -37,7 +37,7 @@ export default (algoliaConfig) => {
 
                 delete payload.availabilityRanges
                 payload.availability = availability
-                
+
                 return unWrap(await fetch(`https://${algoliaConfig.appId}-dsn.algolia.net/1/indexes/homes/${homeId}`, {
                     headers,
                     method: 'PUT',
@@ -65,6 +65,6 @@ export default (algoliaConfig) => {
                 return getErrorResponse(error)
             }
         },
-    
+
     }
 }
