@@ -1,4 +1,5 @@
 export default {
+    rootUrl: process.env.NODE_ENV === 'production' ? 'https://nuxt-bn-b-ten.vercel.app/' : 'http://localhost:3000',
     components: true,
     head: {
         titleTemplate: "Mastering Nuxt: %s",
