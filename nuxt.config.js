@@ -1,5 +1,5 @@
 export default {
-    components: true,
+    components: true, 
     head: {
         titleTemplate: "Mastering Nuxt: %s",
         htmlAttrs: {
