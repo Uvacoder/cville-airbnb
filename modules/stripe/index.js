@@ -15,7 +15,7 @@ export default function(){
     })
 
     async function createSession(req, res){
-        const body = req.body
+        const body = req.body 
         if(!body || !body.homeId || !body.start || !body.end || !body.start >= body.end){
             return rejectHitBadRequest(res)
         }
