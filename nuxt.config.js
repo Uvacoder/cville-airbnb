@@ -31,11 +31,11 @@ export default {
     ],
     buildModules:['@nuxtjs/tailwindcss', '@nuxt/image'],
     cloudinary:{
-        cloudName: 'dzxztzdg4',
+        cloudName: 'masteringnuxt',
     },
     image: {
         cloudinary: {
-          baseURL: 'https://res.cloudinary.com/dzxztzdg4/image/upload/'
+          baseURL: 'https://res.cloudinary.com/masteringnuxt/image/upload/'
         }
     },
     css: ['~/assets/sass/app.scss'],
@@ -46,29 +46,29 @@ export default {
         }
     },
     publicRuntimeConfig:{
-        rootUrl: process.env.NODE_ENV === 'production' ? 'https://nuxt-bn-b-seven.vercel.app' : 'http://localhost:3000', 
+        rootUrl: process.env.NODE_ENV === 'production' ? 'https://nuxtbnb.com' : 'http://localhost:3000',
         auth:{
             cookieName: 'idToken',
-            clientId: '537712074419-0pao3sshf84cqqtaie3aumvmobmlseji.apps.googleusercontent.com',
+            clientId: '261771873987-d63fk0jh603nt8mi7sq7359kh1u0t2du.apps.googleusercontent.com',
         },
         algolia:{
-            appId: 'QXGX8RCAML',
-            key:'f0ecada6cb5d32e6496eb1e42c3d7bbd',
+            appId: 'Q6IFH1VAUQ',
+            key:'929a498d223da96d79ee80fae0055203',
         },
         cloudinary:{
-            apiKey: '751854148899179',
+            apiKey: '296271252567571',
         },
         stripe:{
-            key: "pk_test_51IszI9HmBUTGMpy8hzjcu1w4uTUubuj4s3lECfzQtJ1EInR5w7oVXltvVck4GWBsX5AWOkPLKV0LWeeS30kZoYXr003sNXOxbF",
+            key: "pk_test_51J8GecKgahg7NWo8nsIuypsePpQz0vRgczo9nN6QBo7qvXzHXAE9xPQkX8ivjs1OW947W9HGyUlO3bNJH1VzfwIO00xZSy1h4X",
         },
     },
     privateRuntimeConfig:{
         algolia:{
-            appId: 'QXGX8RCAML',
-            key: '739175c49753db77b422766b417678b1',
+            appId: 'Q6IFH1VAUQ',
+            key: process.env.ALGOLIA_SECRET_KEY,
         },
         cloudinary:{
-            apiSecret: 'Hner5MurgYTJLMQQ9F36P8msRN0',
+            apiSecret: process.env.CLOUDINARY_SECRET_KEY,
         },
         stripe:{
             secretKey: process.env.STRIPE_SECRET_KEY,

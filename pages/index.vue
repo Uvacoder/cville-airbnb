@@ -1,11 +1,17 @@
 <template>
-<div>
-    <div v-for="home in homes" :key="home.objectID" style="float:left;margin:10px">
-        <nuxt-link :to="`/home/${home.objectID}`" prefetch>
-            <home-card :home="home"/>
-        </nuxt-link>
+<div class="app">
+    <div class="app-container">
+      <div class="app-hero">
+        <h2>
+          - Settle in somewhere new. Discover stays to live, work, or just relax.
+        </h2>
+      </div>
     </div>
-</div>
+    <SectionPremiumListings />
+    <SectionRecentlyAdded class="app-background-grey" :homes="homes" />
+    <SectionMore />
+  </div>
+
 </template>
 <script>
 export default {
