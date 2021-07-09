@@ -20,7 +20,7 @@ export default {
             title: 'Homepage',
             meta: [{
                 name: 'description',
-                content: 'This is a homepage!',
+                content: 'NuxtBNB is an AirBNB app that uses Nuxt, Cloudinary, Stripe, Google Maps and Algolia.  Learn more at MasteringNuxt.com',
                 hid: 'description'
             }]
         }
