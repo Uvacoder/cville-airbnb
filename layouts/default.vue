@@ -5,7 +5,7 @@
         <img src="/images/logo.svg"/>
       </nuxt-link>
       <div class="app-search">
-        <input type="text" ref="citySearch" @changed="changed" placeholder="Enter your address"/>
+        <input type="text" ref="citySearch" @changed="changed" placeholder="Enter a city"/>
         <client-only>
 
         <template #placeholder>
