@@ -3,7 +3,7 @@
     <div class="app-container">
       <div class="app-hero">
         <h2>
-          - Settle in somewhere new. Discover stays to live, work, or just relax.
+          - Check out our great BnB rentals on the water in Chesapeake.
         </h2>
       </div>
     </div>
